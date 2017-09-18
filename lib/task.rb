@@ -21,10 +21,10 @@ class Task
   end
 
   def save
-    DB.exec("INSERT INTO tasks (description, list_id) VALUES ('#{@description}', #{@list_id});") # do we need to add @due_date and/or @category?
+    DB.exec("INSERT INTO tasks (description, list_id, due_date) VALUES ('#{@description}', #{@list_id}, #{@due_date});") # do we need to add @due_date and/or @category?
   end
 
   def ==(another_task)
-    self.description().==(another_task.description()).&(self.list_id().==(another_task.list_id())) # do we need to add @due_date and/or @category?
+    self.description().==(another_task.description()).&(self.list_id().==(another_task.list_id())).&self.due_date().==(another_task.due_date()) # do we need to add @due_date and/or @category?
   end
 end
